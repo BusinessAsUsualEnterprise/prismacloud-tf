@@ -1,0 +1,21 @@
+---
+metadata:
+ name: "IaC Policy #1 created with terraform"
+ severity: "medium"
+ guidelines: "..."
+ category: "general"
+scope:
+  provider: "azure"
+definition:
+  and:
+  - cond_type: "attribute"
+    resource_types:
+      - "azurerm_resource_group"
+    attribute: "tags.email"
+    operator: "exists"
+  - cond_type: "attribute"
+    resource_types:
+      - "azurerm_resource_group"
+    attribute: "tags.email"
+    operator: "contains"
+    value: "@"

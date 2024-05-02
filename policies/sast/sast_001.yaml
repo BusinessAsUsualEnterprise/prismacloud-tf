@@ -1,0 +1,12 @@
+---
+metadata:
+   name: "SAST Policy #1 created with terraform"
+   guidelines: "..."
+   category: sast
+   severity: medium
+   cwe: "CWE-9999: Custom cwe"
+scope:
+   languages:
+      - python
+definition:
+  pattern: exec(<ANY>)

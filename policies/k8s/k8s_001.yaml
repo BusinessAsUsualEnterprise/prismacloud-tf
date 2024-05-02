@@ -1,0 +1,15 @@
+---
+metadata:
+  name: "Kubernetes Policy #1 created with terraform"
+  guidelines: "..."
+  category: "kubernetes"
+  severity: "medium"
+scope:
+  provider: kubernetes
+definition:
+  cond_type: "attribute"
+  resource_types:
+  - "Pod"
+  attribute: "spec.containers.*.securityContext.privileged"
+  operator: "not_equals"
+  value: "true"
