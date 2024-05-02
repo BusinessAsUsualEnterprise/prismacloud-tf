@@ -1,11 +1,12 @@
 # Prisma Cloud Terraform
 
-This repository gives some examples of how to leverage terraform for configuring Prisma Cloud.
+This repository gives some examples of how to leverage [terraform](https://registry.terraform.io/providers/PaloAltoNetworks/prismacloud/latest/docs) for configuring Prisma Cloud.
 
-## Policies
+## Examples
+### Policies
 Define build policies as code and apply them via terraform.
 
-Examples partly based on [https://docs.prismacloud.io/en/enterprise-edition/content-collections/governance/custom-build-policies/custom-build-policies](https://docs.prismacloud.io/en/enterprise-edition/content-collections/governance/custom-build-policies/custom-build-policies)
+Examples partly based on [the documentation](https://docs.prismacloud.io/en/enterprise-edition/content-collections/governance/custom-build-policies/custom-build-policies)
 
 
 ## Getting started
