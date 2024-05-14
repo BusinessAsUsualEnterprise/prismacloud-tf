@@ -14,3 +14,18 @@ Examples partly based on [the documentation](https://docs.prismacloud.io/en/ente
 2. Initialize terraform with `terraform init`
 3. Apply policies with `terraform apply`
 
+### GitHub Actions Pipeline
+This repository contains an example pipeline for maintaining policies and compliance standards in a GitOps way.
+
+Required Environment Variables:
+- PC_ACCESS_KEY
+- PC_SECRET_KEY
+- PRISMA_API_URL
+
+Depending on backend:
+- Secrets
+    - AWS_ACCESS_KEY_ID
+    - AWS_SECRET_ACCESS_KEY
+    - AWS_SESSION_TOKEN
+- Variables
+    - AWS_REGION

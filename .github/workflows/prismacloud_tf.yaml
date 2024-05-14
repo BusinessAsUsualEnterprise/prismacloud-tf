@@ -1,0 +1,55 @@
+name: Prisma Cloud IaC
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+  workflow_call:
+
+jobs:
+  apply:
+    name: Configure Prisma Cloud
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Terraform
+      uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: '1.3.7'
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@13d241b293754004c80624b5567555c4a39ffbe3
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+        aws-region: ${{ vars.AWS_REGION }}
+        mask-aws-account-id: false
+
+    - name: Prepare Prisma Cloud TF
+      run: |
+        export API=$(echo ${PRISMA_API_URL#*//})
+        cat <<EOF | tee .prismacloud_auth.json &>/dev/null 
+        {
+            "url" : "${API}",
+            "username" : "${PC_ACCESS_KEY}",
+            "password" : "${PC_SECRET_KEY}"
+        }
+        EOF
+      env:
+        PC_ACCESS_KEY: ${{ secrets.PC_ACCESS_KEY }}
+        PC_SECRET_KEY: ${{ secrets.PC_SECRET_KEY }}
+        PRISMA_API_URL: ${{ vars.PRISMA_API_URL }}
+
+    - name: Terraform Init
+      run: |
+        terraform init
+
+    - name: Terraform Apply
+      run: |
+        terraform apply -auto-approve

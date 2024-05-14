@@ -1,0 +1,15 @@
+---
+metadata:
+   name: "SAST Policy #2 created with terraform"
+   guidelines: "..."
+   category: sast
+   severity: medium
+   cwe: "CWE-9999: Custom cwe"
+scope:
+   languages:
+      - python
+definition:
+  source: request.args.get(<ANY>)
+  # sanitizer:
+  #   or:
+  sink: print(<ANY>)

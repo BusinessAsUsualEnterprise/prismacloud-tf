@@ -1,0 +1,18 @@
+---
+metadata:
+ name: "IaC Policy #2 created with terraform"
+ severity: "medium"
+ guidelines: "..."
+ category: "general"
+scope:
+  provider: "aws"
+definition:
+  and:
+  - cond_type: "attribute"
+    resource_types: "all"
+    attribute: "tags.technical_owner"
+    operator: "exists"
+  - cond_type: "attribute"
+    resource_types: "all"
+    attribute: "tags.environment_type"
+    operator: "exists"

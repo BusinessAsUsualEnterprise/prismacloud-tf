@@ -1,0 +1,1 @@
+config from cloud.resource where cloud.service = 'Amazon EC2' AND api.name = 'aws-ec2-describe-instances' AND json.rule = tags[*].key does not exist
